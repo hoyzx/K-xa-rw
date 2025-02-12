@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f0;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background-color: #ff99cc;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            margin: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 {
+            text-align: center;
+            color: #d5006d;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        label {
+            font-size: 16px;
+            color: #d5006d;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ff4c92;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-box:focus {
+            border-color: #ff1f7e;
+        }
+
+        .feedback {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .valid-feedback {
+            color: green;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background-color: #d5006d;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff1f7e;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #d5006d;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Heart animation */
+        @keyframes float-hearts {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff66b2;
+            animation: float-hearts 3s linear infinite;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Valentine Request</h2>
+        <label for="password">Enter your password:</label>
+        <input type="password" id="password" class="input-box" placeholder="Enter password">
+        <div id="password-feedback" class="feedback"></div>
+        <button class="submit-btn" onclick="validatePassword()">Submit</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function generateHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            const randomX = Math.random() * window.innerWidth;
+            const randomDelay = Math.random() * 2;
+
+            heart.style.left = `${randomX}px`;
+            heart.style.animationDelay = `${randomDelay}s`;
+
+            setTimeout(() => {
+                heart.remove(); // Remove heart after animation is complete
+            },
